@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Story — Environmental Futures Archive</title>
+  <meta name="description" content="Story from the Environmental Futures Archive.">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <div class="site-container header-inner">
+      <a href="./index.html" class="brand-link" aria-label="The Environmental Futures Archive Home">
+        <img src="./logo.png" alt="The Environmental Futures Archive Logo" class="brand-logo" width="64" height="64">
+        <span class="wordmark">The Environmental Futures Archive</span>
+      </a>
+      <nav aria-label="Main Navigation">
+        <ul class="site-nav">
+          <li><a href="./index.html" class="nav-link">Home</a></li>
+          <li><a href="./stories.html" class="nav-link">Stories</a></li>
+          <li><a href="./submit.html" class="nav-link">Submit</a></li>
+          <li><a href="./about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="site-main" role="main">
+    <div class="site-container">
+      <article class="reading-column">
+        <header class="story-header">
+          <h1 id="story-title" class="story-title">Loading story...</h1>
+          <p id="story-byline" class="story-byline"></p>
+          <p class="story-prompt-note">Written in response to: &ldquo;What does the environment look like in 100 years?&rdquo;</p>
+        </header>
+
+        <!-- Optional featured art container (for future open-access art integration) -->
+        <div id="story-featured-art" style="display: none; margin-bottom: 2rem;">
+          <img id="story-art-img" src="" alt="" style="width: 100%; height: auto; display: block;">
+          <p id="story-art-credit" class="secondary-text" style="font-style: italic; margin-top: 0.5rem;"></p>
+        </div>
+
+        <div id="story-body" class="story-body">
+          <!-- Story content populated dynamically -->
+        </div>
+
+        <footer class="story-footer">
+          <div id="author-bio-container" class="author-bio" style="display: none;">
+            <p><strong>About the author:</strong> <span id="author-bio-text"></span></p>
+          </div>
+
+          <div class="story-navigation">
+            <span id="prev-story-wrapper"><a href="#" id="prev-story-link">&larr; Previous story</a></span>
+            <span><a href="./submit.html">Submit a story</a></span>
+            <span id="next-story-wrapper"><a href="#" id="next-story-link">Next story &rarr;</a></span>
+          </div>
+
+          <p style="margin-top: 1.5rem;"><a href="./stories.html">&larr; Back to all stories</a></p>
+        </footer>
+      </article>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-container">
+      <p class="footer-text">
+        Environmental Futures Archive | <a href="#" id="contact-link" class="contact-obfuscated" data-user="archive" data-domain="environmental-futures.org">contact</a> | 2026
+      </p>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>

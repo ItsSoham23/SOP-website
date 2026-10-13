@@ -1,0 +1,156 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/theme.json",
+  "version": 3,
+  "title": "Environmental Futures Archive",
+  "settings": {
+    "appearanceTools": true,
+    "color": {
+      "palette": [
+        {
+          "name": "Base Background",
+          "slug": "base",
+          "color": "#FFFFFF"
+        },
+        {
+          "name": "Ink Text",
+          "slug": "text",
+          "color": "#222222"
+        },
+        {
+          "name": "Secondary Text",
+          "slug": "secondary",
+          "color": "#5C5C5C"
+        },
+        {
+          "name": "Rule & Border",
+          "slug": "rule",
+          "color": "#D9D9D6"
+        },
+        {
+          "name": "Field Background",
+          "slug": "field-bg",
+          "color": "#F5F5F3"
+        },
+        {
+          "name": "Field Border",
+          "slug": "field-border",
+          "color": "#BDBDB8"
+        },
+        {
+          "name": "Accent (Dove Sun 1943)",
+          "slug": "accent",
+          "color": "#6B4F1A"
+        },
+        {
+          "name": "Error",
+          "slug": "error",
+          "color": "#B00020"
+        }
+      ]
+    },
+    "typography": {
+      "fontFamilies": [
+        {
+          "name": "Literata",
+          "slug": "literata",
+          "fontFamily": "'Literata', Georgia, serif"
+        },
+        {
+          "name": "Public Sans",
+          "slug": "public-sans",
+          "fontFamily": "'Public Sans', system-ui, sans-serif"
+        }
+      ],
+      "fontSizes": [
+        {
+          "name": "Small (15px)",
+          "slug": "small",
+          "size": "0.9375rem"
+        },
+        {
+          "name": "Body (19px)",
+          "slug": "body",
+          "size": "1.1875rem"
+        },
+        {
+          "name": "Subheading (24px)",
+          "slug": "medium",
+          "size": "1.5rem"
+        },
+        {
+          "name": "Section Heading (30px)",
+          "slug": "large",
+          "size": "1.875rem"
+        },
+        {
+          "name": "Title (40px)",
+          "slug": "x-large",
+          "size": "2.5rem"
+        }
+      ]
+    },
+    "layout": {
+      "contentSize": "40rem",
+      "wideSize": "56rem"
+    },
+    "spacing": {
+      "units": ["rem", "px", "%"]
+    }
+  },
+  "styles": {
+    "color": {
+      "background": "var(--wp--preset--color--base)",
+      "text": "var(--wp--preset--color--text)"
+    },
+    "typography": {
+      "fontFamily": "var(--wp--preset--font-family--literata)",
+      "fontSize": "var(--wp--preset--font-size--body)",
+      "lineHeight": "1.65"
+    },
+    "elements": {
+      "link": {
+        "color": {
+          "text": "var(--wp--preset--color--text)"
+        },
+        "typography": {
+          "textDecoration": "underline"
+        }
+      },
+      "button": {
+        "color": {
+          "background": "var(--wp--preset--color--accent)",
+          "text": "#FFFFFF"
+        },
+        "typography": {
+          "fontFamily": "var(--wp--preset--font-family--public-sans)",
+          "fontSize": "1rem",
+          "fontWeight": "600"
+        },
+        "border": {
+          "radius": "2px"
+        }
+      },
+      "h1": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--x-large)",
+          "lineHeight": "1.2",
+          "fontWeight": "600"
+        }
+      },
+      "h2": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--large)",
+          "lineHeight": "1.2",
+          "fontWeight": "600"
+        }
+      },
+      "h3": {
+        "typography": {
+          "fontSize": "var(--wp--preset--font-size--medium)",
+          "lineHeight": "1.2",
+          "fontWeight": "600"
+        }
+      }
+    }
+  }
+}

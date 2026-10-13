@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Stories — Environmental Futures Archive</title>
+  <meta name="description" content="A collection of stories by undergraduate students responding to the prompt: What does the environment look like in 100 years?">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <div class="site-container header-inner">
+      <a href="./index.html" class="brand-link" aria-label="The Environmental Futures Archive Home">
+        <img src="./logo.png" alt="The Environmental Futures Archive Logo" class="brand-logo" width="64" height="64">
+        <span class="wordmark">The Environmental Futures Archive</span>
+      </a>
+      <nav aria-label="Main Navigation">
+        <ul class="site-nav">
+          <li><a href="./index.html" class="nav-link">Home</a></li>
+          <li><a href="./stories.html" class="nav-link is-current" aria-current="page">Stories</a></li>
+          <li><a href="./submit.html" class="nav-link">Submit</a></li>
+          <li><a href="./about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="site-main" role="main">
+    <div class="site-container">
+      <div class="text-column">
+        <h1>Stories</h1>
+        <p class="secondary-text" style="font-size: 1.125rem; margin-bottom: 2rem;">A collection of stories by undergraduate students.</p>
+      </div>
+
+      <!-- Live or Sample Stories List Container -->
+      <ul id="stories-list" class="stories-list" aria-label="Stories Archive">
+        <!-- Rendered dynamically by script.js with pagination -->
+      </ul>
+
+      <!-- Empty state container (shown if no stories exist) -->
+      <div id="stories-empty-state" class="text-column" style="display: none; padding: 2rem 0;">
+        <p>The first stories will appear here soon. If you are an undergraduate student, you can <a href="./submit.html">submit yours</a>.</p>
+      </div>
+
+      <!-- Pagination -->
+      <nav id="pagination-nav" class="pagination" aria-label="Stories pagination">
+        <a href="#" id="prev-page" class="pagination-link" aria-disabled="true">Newer stories</a>
+        <span id="page-indicator" class="secondary-text" style="font-size: 0.9375rem;">Page 1 of 2</span>
+        <a href="#" id="next-page" class="pagination-link">Older stories</a>
+      </nav>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-container">
+      <p class="footer-text">
+        Environmental Futures Archive | <a href="#" id="contact-link" class="contact-obfuscated" data-user="archive" data-domain="environmental-futures.org">contact</a> | 2026
+      </p>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>

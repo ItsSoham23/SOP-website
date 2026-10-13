@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Environmental Futures Archive</title>
+  <meta name="description" content="A collection of stories by undergraduate students responding to the prompt: What does the environment look like in 100 years?">
+  
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="Environmental Futures Archive">
+  <meta property="og:description" content="How young people imagine life in a changing world. A collection of stories by students imagining possible environmental futures.">
+  <meta property="og:image" content="./sun-dove-1943.jpg">
+  <meta property="og:type" content="website">
+
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body class="home-page">
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <div class="site-container header-inner">
+      <a href="./index.html" class="brand-link" aria-label="The Environmental Futures Archive Home">
+        <img src="./logo.png" alt="The Environmental Futures Archive Logo" class="brand-logo" width="64" height="64">
+        <span class="wordmark">The Environmental Futures Archive</span>
+      </a>
+      <nav aria-label="Main Navigation">
+        <ul class="site-nav">
+          <li><a href="./index.html" class="nav-link is-current" aria-current="page">Home</a></li>
+          <li><a href="./stories.html" class="nav-link">Stories</a></li>
+          <li><a href="./submit.html" class="nav-link">Submit</a></li>
+          <li><a href="./about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="site-main" role="main">
+    <div class="site-container">
+      
+      <!-- Philosophy World Democracy Style Hero Slider with Fixed Prompt Overlay -->
+      <section class="hero-slider-container" aria-label="Featured Environmental Artwork and Archive Prompt">
+        <div class="hero-slider-track" id="hero-slider-track">
+          <!-- Slide 1: Sun (1943) -->
+          <div class="hero-slide is-active" data-index="0" data-caption="Arthur Dove, Sun, 1943. Smithsonian American Art Museum, Bequest of Suzanne M. Smith.">
+            <img src="./sun-dove-1943.jpg" alt="Arthur Dove, Sun, 1943" class="hero-slide-image">
+          </div>
+          <!-- Slide 2: Clouds and Water (1930) -->
+          <div class="hero-slide" data-index="1" data-caption="Arthur Dove, Clouds and Water, 1930. The Metropolitan Museum of Art, Alfred Stieglitz Collection.">
+            <img src="./dove-clouds-and-water-1930.jpg" alt="Arthur Dove, Clouds and Water, 1930" class="hero-slide-image">
+          </div>
+          <!-- Slide 3: Sunrise, Northport Harbor (1929) -->
+          <div class="hero-slide" data-index="2" data-caption="Arthur Dove, Sunrise, Northport Harbor, 1929. Princeton University Art Museum.">
+            <img src="./dove-sunrise-1929.jpg" alt="Arthur Dove, Sunrise, Northport Harbor, 1929" class="hero-slide-image">
+          </div>
+          <!-- Slide 4: Sails (1911) -->
+          <div class="hero-slide" data-index="3" data-caption="Arthur Dove, Sails, 1911–12. Terra Foundation for American Art.">
+            <img src="./dove-sails-1911.jpg" alt="Arthur Dove, Sails, 1911" class="hero-slide-image">
+          </div>
+          <!-- Slide 5: City Moon (1938) -->
+          <div class="hero-slide" data-index="4" data-caption="Arthur Dove, City Moon, 1938. Hirshhorn Museum and Sculpture Garden, Smithsonian Institution.">
+            <img src="./dove-city-moon-1938.jpg" alt="Arthur Dove, City Moon, 1938" class="hero-slide-image">
+          </div>
+        </div>
+
+        <!-- Fixed Prompt Overlay (changes images in background, but not the prompt on top) -->
+        <div class="hero-overlay">
+          <span class="hero-prompt-eyebrow">The Big Question</span>
+          <h2 class="hero-prompt-title">&ldquo;What will the environment look like in 100 years?&rdquo;</h2>
+        </div>
+
+        <!-- Slider Controls -->
+        <div class="hero-slider-nav" aria-label="Slider navigation">
+          <div class="slider-dots" id="slider-dots">
+            <button class="slider-dot is-active" data-slide="0" aria-label="Slide 1"></button>
+            <button class="slider-dot" data-slide="1" aria-label="Slide 2"></button>
+            <button class="slider-dot" data-slide="2" aria-label="Slide 3"></button>
+            <button class="slider-dot" data-slide="3" aria-label="Slide 4"></button>
+            <button class="slider-dot" data-slide="4" aria-label="Slide 5"></button>
+          </div>
+          <button id="slider-prev" class="slider-btn" aria-label="Previous image">&larr;</button>
+          <button id="slider-next" class="slider-btn" aria-label="Next image">&rarr;</button>
+        </div>
+      </section>
+
+      <!-- Active Slide Caption -->
+      <div id="hero-caption" class="hero-caption-bar" aria-live="polite">
+        Arthur Dove, <em>Sun</em>, 1943. Smithsonian American Art Museum, Bequest of Suzanne M. Smith.
+      </div>
+
+      <!-- Description and Project Intro -->
+      <div class="text-column" style="margin-top: 2.5rem;">
+        <h1>Environmental Futures Archive</h1>
+        <p class="secondary-text" style="font-size: 1.1875rem; margin-bottom: 1.5rem; color: var(--color-text); font-weight: 600;">How young people imagine life in a changing world</p>
+        <p>The Environmental Futures Archive is a collection of stories by students who are imagining possible environmental futures. This project follows how young people think about the environment and how it is going to change in the future, and all the anticipated transformations&mdash;of animal life, technology, myths. Students respond to a single prompt: &ldquo;What will the environment look like in 100 years?&rdquo;</p>
+
+        <div class="button-group">
+          <a href="./stories.html" class="btn btn-primary">Read the stories here</a>
+          <a href="./submit.html" class="btn btn-secondary">Submit a story</a>
+        </div>
+      </div>
+
+      <!-- Small boxes with recent stories uploaded below the description -->
+      <section class="recent-stories-section" aria-label="Recent Stories">
+        <div class="recent-section-header">
+          <h2 class="recent-section-title">Recent Stories</h2>
+          <a href="./stories.html" class="recent-section-link">View all stories &rarr;</a>
+        </div>
+        <div id="recent-stories-grid" class="recent-stories-grid">
+          <!-- Dynamically populated with small boxes with recent stories & links -->
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-container">
+      <p class="footer-text">
+        Environmental Futures Archive | <a href="#" id="contact-link" class="contact-obfuscated" data-user="archive" data-domain="environmental-futures.org">contact</a> | 2026
+      </p>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>

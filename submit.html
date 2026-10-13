@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Submit — Environmental Futures Archive</title>
+  <meta name="description" content="Share your environmental future. Submit original short stories by undergraduate students responding to: What does the environment look like in 100 years?">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <a href="#main-content" class="skip-link">Skip to content</a>
+
+  <header class="site-header" role="banner">
+    <div class="site-container header-inner">
+      <a href="./index.html" class="brand-link" aria-label="The Environmental Futures Archive Home">
+        <img src="./logo.png" alt="The Environmental Futures Archive Logo" class="brand-logo" width="64" height="64">
+        <span class="wordmark">The Environmental Futures Archive</span>
+      </a>
+      <nav aria-label="Main Navigation">
+        <ul class="site-nav">
+          <li><a href="./index.html" class="nav-link">Home</a></li>
+          <li><a href="./stories.html" class="nav-link">Stories</a></li>
+          <li><a href="./submit.html" class="nav-link is-current" aria-current="page">Submit</a></li>
+          <li><a href="./about.html" class="nav-link">About</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main-content" class="site-main" role="main">
+    <div class="site-container">
+      <div class="text-column">
+        <h1 style="font-style: italic;">Share your environmental future</h1>
+        
+        <p style="font-size: 1.3125rem; line-height: 1.5; margin-bottom: 1.5rem; font-weight: 600;">
+          Prompt: &ldquo;What does the environment look like in 100 years?&rdquo;
+        </p>
+
+        <p>We invite undergraduate students pursuing any degree to submit original stories of less than 1000 words that respond to the prompt above. Write from your heart and your visions for the future.</p>
+
+        <h2 style="font-size: 1.25rem; margin-top: 2rem; margin-bottom: 0.75rem;">Before you submit</h2>
+        <ul style="padding-left: 1.25rem; margin-bottom: 2.5rem; line-height: 1.6;">
+          <li>Write an original story of fewer than 1000 words.</li>
+          <li>Do not use AI tools to generate the text.</li>
+          <li>Stories may be lightly copy-edited for spelling, punctuation and clarity, without changing your meaning.</li>
+          <li>We may decline a story, and may remove a published story if there is a reason to.</li>
+          <li>You keep the copyright to your story.</li>
+        </ul>
+
+        <!-- Error Summary Box (Shown on failed submit, focused via JS) -->
+        <div id="error-summary" class="error-summary" role="alert" tabindex="-1" aria-labelledby="error-summary-heading">
+          <h3 id="error-summary-heading" class="error-summary-title">There is a problem with your submission</h3>
+          <ul id="error-summary-list" class="error-summary-list"></ul>
+        </div>
+
+        <form id="submission-form" class="submit-form" novalidate>
+          <!-- Honeypot Field for Spam Protection -->
+          <div class="hp-field" aria-hidden="true">
+            <label for="form-website-hp">Leave this field blank</label>
+            <input type="text" id="form-website-hp" name="website_hp" tabindex="-1" autocomplete="off">
+          </div>
+
+          <!-- Full Name -->
+          <div class="form-group">
+            <label for="author-name" class="form-label form-label-required">Full name</label>
+            <input type="text" id="author-name" name="name" class="form-control" required autocomplete="name">
+            <div id="author-name-error" class="field-error" role="alert">Please enter your full name.</div>
+          </div>
+
+          <!-- Email -->
+          <div class="form-group">
+            <label for="author-email" class="form-label form-label-required">Email</label>
+            <span class="form-helper">Used only to contact you about your story. It will not be published.</span>
+            <input type="email" id="author-email" name="email" class="form-control" required autocomplete="email">
+            <div id="author-email-error" class="field-error" role="alert">Please enter a valid email address.</div>
+          </div>
+
+          <!-- Institution -->
+          <div class="form-group">
+            <label for="author-institution" class="form-label form-label-required">Institution</label>
+            <input type="text" id="author-institution" name="institution" class="form-control" required>
+            <div id="author-institution-error" class="field-error" role="alert">Please enter your university or college institution.</div>
+          </div>
+
+          <!-- Story Title -->
+          <div class="form-group">
+            <label for="story-title-input" class="form-label form-label-required">Story title</label>
+            <input type="text" id="story-title-input" name="title" class="form-control" maxlength="120" required>
+            <div class="field-meta">
+              <span class="secondary-text">Maximum 120 characters</span>
+              <span id="title-char-counter" class="word-counter">0 / 120 characters</span>
+            </div>
+            <div id="story-title-error" class="field-error" role="alert">Please enter a story title of 120 characters or fewer.</div>
+          </div>
+
+          <!-- Story Text and File Upload -->
+          <div class="form-group">
+            <label for="story-content-input" class="form-label form-label-required">Story</label>
+            <span class="form-helper">Paste your story below or upload a file (.txt, .pdf, or .docx). Maximum 1000 words.</span>
+            
+            <div style="margin-bottom: 1rem;">
+              <label for="story-file-upload" class="secondary-text" style="display: block; margin-bottom: 0.35rem; font-weight: 600;">
+                Attach file (optional: .pdf, .docx, .txt):
+              </label>
+              <input 
+                type="file" 
+                id="story-file-upload" 
+                name="story_file" 
+                class="form-control" 
+                accept=".pdf,.docx,.txt,application/pdf,application/vnd.openxmlformats-officedocument.wordprocessingml.document,text/plain"
+                style="padding: 0.4rem 0.5rem; background-color: #FFFFFF;"
+              >
+              <div id="file-info-note" class="secondary-text" style="margin-top: 0.35rem; font-size: 0.875rem;"></div>
+            </div>
+
+            <label for="story-content-input" class="secondary-text" style="display: block; margin-bottom: 0.35rem; font-weight: 600;">
+              Or paste text directly:
+            </label>
+            <textarea id="story-content-input" name="story" class="form-control story-textarea"></textarea>
+            <div class="field-meta">
+              <span></span>
+              <span id="story-word-counter" class="word-counter">0 / 1000 words</span>
+            </div>
+            <div id="story-content-error" class="field-error" role="alert">Please provide your story text or attach a file.</div>
+          </div>
+
+          <!-- Short Author Bio -->
+          <div class="form-group">
+            <label for="author-bio-input" class="form-label">Short author bio</label>
+            <span class="form-helper">Optional. Maximum 60 words.</span>
+            <textarea id="author-bio-input" name="bio" class="form-control bio-textarea"></textarea>
+            <div class="field-meta">
+              <span></span>
+              <span id="bio-word-counter" class="word-counter">0 / 60 words</span>
+            </div>
+            <div id="author-bio-error" class="field-error" role="alert">Bio exceeds 60 words. Shorten it to 60 words or fewer.</div>
+          </div>
+
+          <!-- Publication Name Preference -->
+          <div class="form-group">
+            <fieldset style="border: none; padding: 0; margin: 0;">
+              <legend class="form-label form-label-required">How should your story appear?</legend>
+              <div class="choice-group">
+                <label class="choice-label">
+                  <input type="radio" name="publish_anonymously" value="false" checked>
+                  <span>Publish under my name</span>
+                </label>
+                <label class="choice-label">
+                  <input type="radio" name="publish_anonymously" value="true">
+                  <span>Publish anonymously</span>
+                </label>
+              </div>
+            </fieldset>
+          </div>
+
+          <!-- Confirmation Checkboxes -->
+          <div class="form-group">
+            <label class="choice-label">
+              <input type="checkbox" id="confirm-original" name="confirm_original" required>
+              <span>I confirm that this is my original work.</span>
+            </label>
+            <div id="confirm-original-error" class="field-error" role="alert">You must confirm that this is your original work.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="choice-label">
+              <input type="checkbox" id="confirm-permission" name="confirm_permission" required>
+              <span>I give permission for the Environmental Futures Archive to publish my story following light copy-editing.</span>
+            </label>
+            <div id="confirm-permission-error" class="field-error" role="alert">You must grant publication permission to submit.</div>
+          </div>
+
+          <div class="form-group">
+            <label class="choice-label">
+              <input type="checkbox" id="confirm-age" name="confirm_age" required>
+              <span>I am 18 or older.</span>
+            </label>
+            <div id="confirm-age-error" class="field-error" role="alert">You must confirm you are 18 or older.</div>
+          </div>
+
+          <!-- Submit Button -->
+          <div style="margin-top: 2.5rem;">
+            <button type="submit" id="submit-btn" class="btn btn-primary">Submit story</button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <footer class="site-footer" role="contentinfo">
+    <div class="site-container">
+      <p class="footer-text">
+        Environmental Futures Archive | <a href="#" id="contact-link" class="contact-obfuscated" data-user="archive" data-domain="environmental-futures.org">contact</a> | 2026
+      </p>
+    </div>
+  </footer>
+
+  <script src="./script.js"></script>
+</body>
+</html>

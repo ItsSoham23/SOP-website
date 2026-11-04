@@ -178,6 +178,7 @@ a:hover {
   height: 64px;
   border-radius: 50%;
   object-fit: cover;
+  object-position: center;
   display: block;
   flex-shrink: 0;
   background-color: transparent;

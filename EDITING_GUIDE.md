@@ -19,7 +19,7 @@ When adding a story to the collection:
    - **Scene breaks**: Insert a line with three dashes (`---`) to create a disciplined 3rem rule.
    - **Block quotes**: Precede lines with `>` to format quotations.
 3. **In the Static Site / Script**:
-   - Stories can be added directly to the `SAMPLE_STORIES` array in [`script.js`](file:///c:/Soham/website/script.js) or submitted directly through the [`submit.html`](file:///c:/Soham/website/submit.html) form interface, which automatically adds them to the archive list!
+   - Stories submitted through the [`submit.html`](file:///c:/Soham/website/submit.html) form are sent to the deployed API and immediately added to the public archive. The site does not include bundled sample stories.
 4. **In WordPress**:
    - Go to **Stories > Add New**.
    - Paste the title, author custom field, institution, and bio.
@@ -48,6 +48,7 @@ If a story is paired with featured artwork:
 - **About (`about.html`)**: Contains the project description and curator/developer credit lines.
 - **Stories (`stories.html`)**: Renders the archive with 20 items per page. The empty state ("The first stories will appear here soon...") is configured in `#stories-empty-state`.
 - **Submit (`submit.html`)**: Contains the eligibility guidance, policy statements, and form fields.
+- **Admin (`admin.html`)**: Sign in with the configured admin credentials to download the private ZIP archive.
 
 ---
 

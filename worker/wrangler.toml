@@ -1,0 +1,13 @@
+name = "environmental-futures-api"
+main = "src/index.js"
+compatibility_date = "2026-11-03"
+
+[vars]
+ALLOWED_ORIGIN = "https://your-pages-domain.pages.dev"
+
+# Set secrets with:
+# wrangler secret put SUPABASE_URL
+# wrangler secret put SUPABASE_SERVICE_ROLE_KEY
+# wrangler secret put ADMIN_EMAIL
+# wrangler secret put ADMIN_PASSWORD
+# wrangler secret put SESSION_SECRET

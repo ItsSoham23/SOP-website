@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Admin — Environmental Futures Archive</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main id="main-content" class="site-main" role="main">
+    <div class="site-container">
+      <div class="text-column">
+        <h1>Archive admin</h1>
+        <p>Sign in to download the private archive export.</p>
+        <form id="admin-form" class="submit-form">
+          <div class="form-group">
+            <label for="admin-email" class="form-label">Email</label>
+            <input id="admin-email" class="form-control" type="email" required>
+          </div>
+          <div class="form-group">
+            <label for="admin-password" class="form-label">Password</label>
+            <input id="admin-password" class="form-control" type="password" required>
+          </div>
+          <p id="admin-error" class="field-error" role="alert"></p>
+          <button class="btn btn-primary" type="submit">Sign in</button>
+        </form>
+        <p id="admin-success" hidden><a id="download-link" class="btn btn-primary" href="#">Download all stories (.zip)</a></p>
+      </div>
+    </div>
+  </main>
+  <script>
+    const apiBase = window.EFA_API_BASE || "/api";
+    const form = document.getElementById("admin-form");
+    const error = document.getElementById("admin-error");
+    const success = document.getElementById("admin-success");
+    const download = document.getElementById("download-link");
+    form.addEventListener("submit", async (event) => {
+      event.preventDefault();
+      error.textContent = "";
+      try {
+        const result = await fetch(`${apiBase}/admin/login`, {
+          method: "POST",
+          headers: { "content-type": "application/json" },
+          body: JSON.stringify({
+            email: document.getElementById("admin-email").value,
+            password: document.getElementById("admin-password").value
+          })
+        });
+        if (!result.ok) throw new Error("Invalid admin credentials.");
+        const { token } = await result.json();
+        download.href = `${apiBase}/admin/export.zip`;
+        download.addEventListener("click", async (clickEvent) => {
+          clickEvent.preventDefault();
+          const file = await fetch(download.href, { headers: { "x-admin-token": token } });
+          if (!file.ok) throw new Error("The export could not be created.");
+          const blob = await file.blob();
+          const objectUrl = URL.createObjectURL(blob);
+          const link = document.createElement("a");
+          link.href = objectUrl;
+          link.download = "environmental-futures-stories.zip";
+          link.click();
+          URL.revokeObjectURL(objectUrl);
+        }, { once: true });
+        success.hidden = false;
+        form.hidden = true;
+      } catch (loginError) {
+        error.textContent = loginError.message;
+      }
+    });
+  </script>
+</body>
+</html>

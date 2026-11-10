@@ -13,14 +13,11 @@ create table if not exists public.stories (
   file_path text,
   file_type text,
   file_size integer,
+  file_data bytea,
   submitted_at timestamptz not null default now()
 );
 
 create index if not exists stories_submitted_at_idx
   on public.stories (submitted_at desc);
 
-alter table public.stories enable row level security;
-
-insert into storage.buckets (id, name, public)
-values ('story-files', 'story-files', false)
-on conflict (id) do nothing;
+alter table public.stories add column if not exists file_data bytea;

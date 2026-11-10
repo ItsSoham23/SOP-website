@@ -1,49 +1,34 @@
 # Deployment
 
-The website is a static Cloudflare Pages site. The API is a separate Cloudflare Worker so the database layer remains easy to move to another host later.
+The current deployment uses Vercel Functions and Neon. The Cloudflare Worker files are retained as an older alternative and are not used by the Vercel deployment.
+
+The website is a Vercel deployment with API functions in the `api/` directory.
 
 ## 1. Deploy the website
 
-Create a Cloudflare Pages project from this repository and use the repository root as the build output directory. No build command is required.
+Connect this repository to Vercel. No build command is required.
 
-## 2. Create Supabase resources
+## 2. Configure Neon
 
-Create a Supabase project and run [`worker/schema.sql`](./worker/schema.sql) in its SQL editor. The schema creates the `stories` table and a private `story-files` bucket.
+Connect Neon through the Vercel Marketplace and run [`worker/schema.sql`](./worker/schema.sql) in the Neon SQL editor. The schema creates the `stories` table and stores small uploaded files directly in PostgreSQL.
 
-Your Supabase project URL is:
+## 3. Configure environment variables
 
-```text
-https://osxkimajjqvdvaifcqoe.supabase.co
-```
-
-## 3. Deploy the Worker
-
-```powershell
-cd worker
-npm install
-npx wrangler login
-npx wrangler secret put SUPABASE_URL
-npx wrangler secret put SUPABASE_SERVICE_ROLE_KEY
-npx wrangler secret put ADMIN_EMAIL
-npx wrangler secret put ADMIN_PASSWORD
-npx wrangler secret put SESSION_SECRET
-npm run deploy
-```
-
-When prompted for `SUPABASE_URL`, use:
+Add these in Vercel Project Settings → Environment Variables:
 
 ```text
-https://osxkimajjqvdvaifcqoe.supabase.co
+DATABASE_URL=<Neon connection string>
+ADMIN_EMAIL=<admin email>
+ADMIN_PASSWORD=<strong admin password>
+SESSION_SECRET=<long random secret>
 ```
 
-Set `ALLOWED_ORIGIN` in [`worker/wrangler.toml`](./worker/wrangler.toml) to the exact Cloudflare Pages URL and redeploy.
+The API also accepts `POSTGRES_URL` or `NEON_DATABASE_URL` if that is the variable name provided by the integration.
 
-## 4. Connect `/api`
+## 4. Redeploy and test
 
-In Cloudflare, route `https://your-pages-domain.example/api/*` to the Worker, or use a Worker custom domain and set `window.EFA_API_BASE` to that API URL before deploying the Pages site. The frontend defaults to `/api`, which is the most portable option.
-
-Open `/admin.html` on the Pages site to sign in and download the ZIP export. Keep the admin credentials and `SESSION_SECRET` private.
+Push the repository to GitHub. Vercel will deploy the `api/` functions automatically. Test `/submit.html`, `/stories.html`, and `/admin.html`.
 
 ## Moving hosts later
 
-The frontend only depends on the documented `/api` endpoints. The Worker uses ordinary HTTP requests to Supabase, so it can later be replaced by an Express, Fastify, or other Node service without changing the database schema or public page structure.
+The frontend only depends on the documented `/api` endpoints. The frontend uses relative `/api` requests, and the database access is isolated in `api/_lib/db.js`, so the backend can later move to another Node host without changing the public page structure.

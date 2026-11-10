@@ -1,0 +1,10 @@
+{
+  "name": "environmental-futures-archive",
+  "private": true,
+  "type": "module",
+  "dependencies": {
+    "@neondatabase/serverless": "^1.0.2",
+    "fflate": "^0.8.2",
+    "formidable": "^3.5.2"
+  }
+}

@@ -11,7 +11,7 @@
     <div class="site-container">
       <div class="text-column">
         <h1>Archive admin</h1>
-        <p>Sign in to download the private archive export.</p>
+        <p>Sign in to manage submissions and download the private archive export.</p>
         <form id="admin-form" class="submit-form">
           <div class="form-group">
             <label for="admin-email" class="form-label">Email</label>
@@ -24,16 +24,63 @@
           <p id="admin-error" class="field-error" role="alert"></p>
           <button class="btn btn-primary" type="submit">Sign in</button>
         </form>
-        <p id="admin-success" hidden><a id="download-link" class="btn btn-primary" href="#">Download all stories (.zip)</a></p>
+        <section id="admin-panel" hidden>
+          <p><a id="download-link" class="btn btn-primary" href="#">Download all stories (.zip)</a></p>
+          <h2>Submitted stories</h2>
+          <div id="admin-stories"></div>
+        </section>
       </div>
     </div>
   </main>
   <script>
-    const apiBase = window.EFA_API_BASE || "https://environmental-futures-api.bits-environmental-futures.workers.dev/api";
+    const apiBase = window.EFA_API_BASE || "/api";
     const form = document.getElementById("admin-form");
     const error = document.getElementById("admin-error");
-    const success = document.getElementById("admin-success");
+    const panel = document.getElementById("admin-panel");
+    const stories = document.getElementById("admin-stories");
     const download = document.getElementById("download-link");
+    let token = "";
+
+    function renderStories(items) {
+      stories.innerHTML = "";
+      if (!items.length) {
+        stories.textContent = "No stories have been submitted.";
+        return;
+      }
+      items.forEach((story) => {
+        const row = document.createElement("article");
+        row.style.cssText = "border-top: 1px solid var(--color-rule); padding: 1rem 0;";
+        const heading = document.createElement("h3");
+        heading.textContent = story.title;
+        const details = document.createElement("p");
+        details.textContent = `${story.author} · ${story.institution}${story.fileName ? ` · ${story.fileName}` : ""}`;
+        const remove = document.createElement("button");
+        remove.className = "btn btn-secondary";
+        remove.type = "button";
+        remove.textContent = "Delete";
+        remove.addEventListener("click", async () => {
+          if (!window.confirm(`Delete “${story.title}”? This cannot be undone.`)) return;
+          const result = await fetch(`${apiBase}/admin/stories?id=${encodeURIComponent(story.id)}`, {
+            method: "DELETE",
+            headers: { "x-admin-token": token }
+          });
+          if (!result.ok) {
+            error.textContent = "The story could not be deleted.";
+            return;
+          }
+          row.remove();
+        });
+        row.append(heading, details, remove);
+        stories.appendChild(row);
+      });
+    }
+
+    async function loadStories() {
+      const result = await fetch(`${apiBase}/admin/stories`, { headers: { "x-admin-token": token } });
+      if (!result.ok) throw new Error("The submissions could not be loaded.");
+      renderStories(await result.json());
+    }
+
     form.addEventListener("submit", async (event) => {
       event.preventDefault();
       error.textContent = "";
@@ -47,8 +94,8 @@
           })
         });
         if (!result.ok) throw new Error("Invalid admin credentials.");
-        const { token } = await result.json();
-        download.href = `${apiBase}/admin/export.zip`;
+        ({ token } = await result.json());
+        download.href = `${apiBase}/admin/export`;
         download.addEventListener("click", async (clickEvent) => {
           clickEvent.preventDefault();
           const file = await fetch(download.href, { headers: { "x-admin-token": token } });
@@ -61,7 +108,8 @@
           link.click();
           URL.revokeObjectURL(objectUrl);
         }, { once: true });
-        success.hidden = false;
+        await loadStories();
+        panel.hidden = false;
         form.hidden = true;
       } catch (loginError) {
         error.textContent = loginError.message;

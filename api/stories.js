@@ -18,10 +18,11 @@ async function parseSubmission(request) {
   const form = formidable({
     maxFileSize: 4 * 1024 * 1024,
     keepExtensions: true,
-    allowEmptyFiles: false
+    allowEmptyFiles: true
   });
   const [fields, files] = await form.parse(request);
-  const uploaded = first(files.story_file);
+  const parsedFile = first(files.story_file);
+  const uploaded = parsedFile && parsedFile.size > 0 ? parsedFile : null;
   return {
     title: String(first(fields.title) || "").trim(),
     authorName: String(first(fields.name) || "").trim(),

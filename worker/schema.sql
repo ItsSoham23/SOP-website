@@ -1,3 +1,5 @@
+create extension if not exists pgcrypto;
+
 create table if not exists public.stories (
   id uuid primary key default gen_random_uuid(),
   title text not null check (char_length(title) between 1 and 120),
@@ -16,6 +18,8 @@ create table if not exists public.stories (
 
 create index if not exists stories_submitted_at_idx
   on public.stories (submitted_at desc);
+
+alter table public.stories enable row level security;
 
 insert into storage.buckets (id, name, public)
 values ('story-files', 'story-files', false)

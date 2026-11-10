@@ -11,7 +11,7 @@
 // Bundled Stories Dataset
 // -------------------------------------------------------------
 const SAMPLE_STORIES = [];
-const API_BASE = window.EFA_API_BASE || "/api";
+const API_BASE = window.EFA_API_BASE || "https://environmental-futures-api.bits-environmental-futures.workers.dev/api";
 
 // Initialize on DOMContentLoaded
 document.addEventListener("DOMContentLoaded", () => {

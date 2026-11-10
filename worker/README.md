@@ -4,7 +4,7 @@ This Cloudflare Worker stores story metadata in Supabase PostgreSQL, uploads ori
 
 ## Setup
 
-1. Create a Supabase project and a private Storage bucket named `story-files`.
+1. Use the Supabase project URL `https://osxkimajjqvdvaifcqoe.supabase.co` and create the private `story-files` bucket.
 2. Run [`schema.sql`](./schema.sql) in the Supabase SQL editor.
 3. Install dependencies with `npm install`.
 4. Set the Worker secrets listed in [`wrangler.toml`](./wrangler.toml).

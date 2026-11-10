@@ -10,6 +10,12 @@ Create a Cloudflare Pages project from this repository and use the repository ro
 
 Create a Supabase project and run [`worker/schema.sql`](./worker/schema.sql) in its SQL editor. The schema creates the `stories` table and a private `story-files` bucket.
 
+Your Supabase project URL is:
+
+```text
+https://osxkimajjqvdvaifcqoe.supabase.co
+```
+
 ## 3. Deploy the Worker
 
 ```powershell
@@ -22,6 +28,12 @@ npx wrangler secret put ADMIN_EMAIL
 npx wrangler secret put ADMIN_PASSWORD
 npx wrangler secret put SESSION_SECRET
 npm run deploy
+```
+
+When prompted for `SUPABASE_URL`, use:
+
+```text
+https://osxkimajjqvdvaifcqoe.supabase.co
 ```
 
 Set `ALLOWED_ORIGIN` in [`worker/wrangler.toml`](./worker/wrangler.toml) to the exact Cloudflare Pages URL and redeploy.

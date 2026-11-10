@@ -66,20 +66,34 @@ export default async function handler(request, response) {
     const fileName = submission.file?.originalFilename || null;
     const fileType = submission.file?.mimetype || null;
     const fileSize = submission.file?.size || null;
-    const [created] = await sql`
-      INSERT INTO stories (
-        title, author_name, email, institution, bio, body, anonymous,
-        file_name, file_path, file_type, file_size, file_data
-      )
-      VALUES (
-        ${submission.title}, ${submission.authorName}, ${submission.email},
-        ${submission.institution}, ${submission.bio}, ${submission.body},
-        ${submission.anonymous}, ${fileName}, ${fileName}, ${fileType},
-        ${fileSize},
-        CASE WHEN ${fileHex} IS NULL THEN NULL ELSE decode(${fileHex}, 'hex') END
-      )
-      RETURNING id
-    `;
+    let created;
+    if (fileHex) {
+      [created] = await sql`
+        INSERT INTO stories (
+          title, author_name, email, institution, bio, body, anonymous,
+          file_name, file_path, file_type, file_size, file_data
+        )
+        VALUES (
+          ${submission.title}, ${submission.authorName}, ${submission.email},
+          ${submission.institution}, ${submission.bio}, ${submission.body},
+          ${submission.anonymous}, ${fileName}, ${fileName}, ${fileType},
+          ${fileSize}, decode(${fileHex}, 'hex')
+        )
+        RETURNING id
+      `;
+    } else {
+      [created] = await sql`
+        INSERT INTO stories (
+          title, author_name, email, institution, bio, body, anonymous
+        )
+        VALUES (
+          ${submission.title}, ${submission.authorName}, ${submission.email},
+          ${submission.institution}, ${submission.bio}, ${submission.body},
+          ${submission.anonymous}
+        )
+        RETURNING id
+      `;
+    }
     if (submission.file) await fs.unlink(submission.file.filepath).catch(() => {});
     return response.status(201).json({ id: created.id });
   } catch (error) {

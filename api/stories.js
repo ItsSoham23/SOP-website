@@ -61,6 +61,7 @@ export default async function handler(request, response) {
     }
 
     const fileData = submission.file ? await fs.readFile(submission.file.filepath) : null;
+    const fileHex = fileData ? fileData.toString("hex") : null;
     const fileName = submission.file?.originalFilename || null;
     const fileType = submission.file?.mimetype || null;
     const fileSize = submission.file?.size || null;
@@ -73,13 +74,15 @@ export default async function handler(request, response) {
         ${submission.title}, ${submission.authorName}, ${submission.email},
         ${submission.institution}, ${submission.bio}, ${submission.body},
         ${submission.anonymous}, ${fileName}, ${fileName}, ${fileType},
-        ${fileSize}, ${fileData}
+        ${fileSize},
+        CASE WHEN ${fileHex} IS NULL THEN NULL ELSE decode(${fileHex}, 'hex') END
       )
       RETURNING id
     `;
+    if (submission.file) await fs.unlink(submission.file.filepath).catch(() => {});
     return response.status(201).json({ id: created.id });
   } catch (error) {
-    console.error("Could not save story", error);
+    console.error("Could not save story", error?.message || error);
     return response.status(500).json({ error: "The story could not be saved." });
   }
 }

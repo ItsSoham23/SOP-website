@@ -41,6 +41,11 @@
     const download = document.getElementById("download-link");
     let token = "";
 
+    function showError(message) {
+      error.textContent = message;
+      error.classList.add("is-active");
+    }
+
     function renderStories(items) {
       stories.innerHTML = "";
       if (!items.length) {
@@ -65,7 +70,7 @@
             headers: { "x-admin-token": token }
           });
           if (!result.ok) {
-            error.textContent = "The story could not be deleted.";
+            showError("The story could not be deleted.");
             return;
           }
           row.remove();
@@ -93,7 +98,10 @@
             password: document.getElementById("admin-password").value
           })
         });
-        if (!result.ok) throw new Error("Invalid admin credentials.");
+        if (!result.ok) {
+          const details = await result.json().catch(() => ({}));
+          throw new Error(details.error || "Invalid admin credentials.");
+        }
         ({ token } = await result.json());
         download.href = `${apiBase}/admin/export`;
         download.addEventListener("click", async (clickEvent) => {
@@ -112,7 +120,7 @@
         panel.hidden = false;
         form.hidden = true;
       } catch (loginError) {
-        error.textContent = loginError.message;
+        showError(loginError.message);
       }
     });
   </script>

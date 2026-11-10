@@ -1,5 +1,7 @@
 export function requireAdmin(request) {
-  const token = request.headers.get("x-admin-token");
+  const token = typeof request.headers?.get === "function"
+    ? request.headers.get("x-admin-token")
+    : request.headers?.["x-admin-token"];
   return Boolean(token && process.env.SESSION_SECRET && token === process.env.SESSION_SECRET);
 }
 
